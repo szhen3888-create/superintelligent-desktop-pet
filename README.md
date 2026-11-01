@@ -10,9 +10,9 @@ Windows 桌面宠物客户端。在开源项目上二次整合：小小桌宠 We
 
 ## 下载（完整软件）
 
-请到 **[Releases](https://github.com/szhen3888-create/superintelligent-desktop-pet/releases)** 下载：
+请到 **[Releases · v1.1.0](https://github.com/szhen3888-create/superintelligent-desktop-pet/releases/tag/v1.1.0)** 下载：
 
-- `SI合宠-v1.1.0-windows.zip`
+- [`SI-HeChong-v1.1.0-windows.zip`](https://github.com/szhen3888-create/superintelligent-desktop-pet/releases/download/v1.1.0/SI-HeChong-v1.1.0-windows.zip)（约 769MB）
 
 解压后双击 **`SI合宠.exe`**。请保留完整文件夹，不要只拷贝 exe。
 
