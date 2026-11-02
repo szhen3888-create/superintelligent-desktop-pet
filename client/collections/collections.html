@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: file:; media-src 'self' file:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'none'">
+<title>SI合宠 · 修改形象</title>
+<link rel="stylesheet" href="collections.css">
+</head>
+<body>
+<header class="topbar">
+  <button id="back" class="quiet">← 返回</button>
+  <div>
+    <h1>修改形象</h1>
+    <p>只改当前角色形象。可选「动作原版」切回小小桌宠，或选 CrossPet 衣服。开关请回主页。</p>
+  </div>
+</header>
+
+<div class="top">
+  <div class="stage" id="stage"></div>
+  <div class="info">
+    <h2 id="charName"></h2>
+    <div class="outfit" id="outfitName"></div>
+    <div class="row">
+      <div class="label">名字<small>当前角色的名字，留空恢复默认</small></div>
+      <input type="text" id="name" maxlength="40"><button id="saveName">保存</button>
+    </div>
+    <div id="peakOutfits"></div>
+  </div>
+</div>
+
+<h3 id="outfitsTitle">可选形象</h3>
+<div class="cards outfits" id="outfitCards"></div>
+<p id="toast" role="status"></p>
+
+<script src="peak-hours.js"></script>
+<script src="character-cards.js"></script>
+<script src="collections.js"></script>
+</body>
+</html>

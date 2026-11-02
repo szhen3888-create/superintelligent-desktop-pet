@@ -1,0 +1,43 @@
+const { contextBridge, ipcRenderer } = require('electron');
+contextBridge.exposeInMainWorld('petClient', Object.freeze({
+  aiSettings: () => ipcRenderer.invoke('ai:settings'),
+  aiSave: (input) => ipcRenderer.invoke('ai:save', input),
+  aiTest: () => ipcRenderer.invoke('ai:test'),
+  aiHistory: (id) => ipcRenderer.invoke('ai:history', id),
+  aiSend: (id, text) => ipcRenderer.invoke('ai:send', id, text),
+  onAIChanged: (callback) => {const listener=(_event,id)=>callback(id);ipcRenderer.on('ai:changed',listener);return ()=>ipcRenderer.removeListener('ai:changed',listener);},
+  clone: id => ipcRenderer.invoke('characters:clone',id),
+  removeClone: id => ipcRenderer.invoke('characters:remove-clone',id),
+  resize: (id,size) => ipcRenderer.invoke('characters:resize',id,size),
+  list: () => ipcRenderer.invoke('characters:list'),
+  toggle: (id, visible) => ipcRenderer.invoke('characters:toggle', id, visible),
+  play: (id, name) => ipcRenderer.invoke('characters:play', id, name),
+  folder: (id) => ipcRenderer.invoke('characters:folder', id),
+  import: () => ipcRenderer.invoke('characters:import'),
+  hideAll: () => ipcRenderer.invoke('characters:hide-all'),
+  showAll: () => ipcRenderer.invoke('characters:show-all'),
+  quit: () => ipcRenderer.invoke('client:quit'),
+  onChanged: (callback) => {const listener=(_event,roles)=>callback(roles);ipcRenderer.on('characters:changed',listener);return ()=>ipcRenderer.removeListener('characters:changed',listener);},
+  crosspetSummary: () => ipcRenderer.invoke('crosspet:summary'),
+  crosspetCloneLooks: () => ipcRenderer.invoke('crosspet:clone-looks'),
+  crosspetGetCollections: () => ipcRenderer.invoke('crosspet:get'),
+  crosspetSkin: (id, skin) => ipcRenderer.invoke('crosspet:skin', id, skin),
+  crosspetCloneSkin: (cloneId, characterId, skin) => ipcRenderer.invoke('crosspet:clone-skin', cloneId, characterId, skin),
+  crosspetRename: (id, name) => ipcRenderer.invoke('crosspet:rename', id, name),
+  crosspetSetPeakSkins: (map) => ipcRenderer.invoke('crosspet:set-peak-skins', map),
+  crosspetToggleDesktop: () => ipcRenderer.invoke('crosspet:toggle-desktop'),
+  crosspetToggle: (id, visible) => ipcRenderer.invoke('crosspet:toggle', id, visible),
+  crosspetToggleClone: (cloneId, visible) => ipcRenderer.invoke('crosspet:toggle-clone', cloneId, visible),
+  crosspetOpenCollections: (id, cloneId) => ipcRenderer.invoke('crosspet:open-collections', id, cloneId || null),
+  crosspetCloseCollections: () => ipcRenderer.invoke('crosspet:close-collections'),
+  crosspetSettings: () => ipcRenderer.invoke('crosspet:settings'),
+  crosspetSetFollow: (key, value) => ipcRenderer.invoke('crosspet:set-follow', key, value),
+  crosspetSetStyle: (key, value) => ipcRenderer.invoke('crosspet:set-style', key, value),
+  crosspetInstall: (target) => ipcRenderer.invoke('crosspet:install', target),
+  crosspetUninstall: (target) => ipcRenderer.invoke('crosspet:uninstall', target),
+  onCrosspetChanged: (callback) => {
+    const listener = (_event, payload) => callback(payload);
+    ipcRenderer.on('crosspet:changed', listener);
+    return () => ipcRenderer.removeListener('crosspet:changed', listener);
+  },
+}));
